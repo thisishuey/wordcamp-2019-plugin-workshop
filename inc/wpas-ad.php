@@ -28,6 +28,12 @@ class WPAdServer_Ad {
 	}
 
 	public static function render( $ad_post ) {
+		// HERE
+
+		echo '<pre>';
+		print_r( $ad_post );
+		echo '</pre>';
+
 		$ad_post_meta = get_post_meta( $ad_post->ID );
 
 		$ad_image_url = wp_get_attachment_url( get_post_thumbnail_id( $ad_post->ID ), 'full' );
