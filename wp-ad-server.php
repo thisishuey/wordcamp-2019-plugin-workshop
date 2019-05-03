@@ -7,3 +7,8 @@
  * Author: Jake Sutherland & Jeff "Huey" Huelsbeck
  * License: GPLv3
  */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+require_once __DIR__ . '/inc/wpas-ad.php';
+require_once __DIR__ . '/inc/wpas-ad-zone.php';
