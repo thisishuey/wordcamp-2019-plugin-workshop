@@ -1,5 +1,7 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // Register the 'Ad' post type.
 add_action( 'init', array( 'WPAdServer_Ad', 'register' ) );

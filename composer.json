@@ -15,5 +15,10 @@
 	],
 	"require": {
 		"wpscholar/phpcs-standards-wpscholar": "^1.0"
+	},
+	"scripts": {
+		"lint": [
+			"vendor/bin/phpcs . --standard=WPScholar"
+		]
 	}
 }
