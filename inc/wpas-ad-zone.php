@@ -13,6 +13,7 @@ class WPAdServer_Ad_Zone {
 					'name'          => 'Ad Zones',
 					'singular_name' => 'Ad Zone',
 				),
+				'hierarchical' => true
 			)
 		);
 	}
@@ -66,9 +67,9 @@ class WPAdServer_Ad_Zone {
 			}
 
 			// Get a random ad.
-			$zone_ad_id = mt_rand( 0, ( count( $zone_ids ) - 1 ) );
+			$random_zone_id = mt_rand( 0, ( count( $zone_ids ) - 1 ) );
 
-			$zone_ad_post = get_post( $zone_ids[ $zone_ad_id ] );
+			$zone_ad_post = get_post( $zone_ids[ $random_zone_id ] );
 
 			$zone_ad = array(
 				'url'   => get_post_meta( $zone_ad_post->ID, 'URL', true ),

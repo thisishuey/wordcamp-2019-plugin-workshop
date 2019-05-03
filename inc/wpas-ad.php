@@ -27,18 +27,12 @@ class WPAdServer_Ad {
 		);
 	}
 
-	public static function render( $ad_post ) {
-		// HERE
-
+	public static function render( $ad ) {
 		echo '<pre>';
-		print_r( $ad_post );
+		print_r( $ad );
 		echo '</pre>';
 
-		$ad_post_meta = get_post_meta( $ad_post->ID );
-
-		$ad_image_url = wp_get_attachment_url( get_post_thumbnail_id( $ad_post->ID ), 'full' );
-
-		$output = sprintf( '<a href="%s" target="_blank"><img src="%s"></a>', $ad_post_meta['URL'][0], $ad_image_url );
+		$output = sprintf( '<a href="%s" target="_blank"><img src="%s"></a>', $ad['url'], $ad['image'] );
 
 		return $output;
 	}
