@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 class WPAdServer_Ad {
-  public static function wpas_create_post_type() {
+  public static function register() {
     register_post_type("wpas-ad",
       array(
        "labels" => array(
