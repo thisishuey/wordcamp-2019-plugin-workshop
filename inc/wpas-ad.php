@@ -29,7 +29,30 @@ class WPAdServer_Ad {
 
     $output = '';
 
-    $output = '(Zone: ' . esc_html( $atts['zone'] ) . ')';
+    $args = array(
+      'post_type' => 'wpas-ad',
+      'post_status' => 'publish',
+      'tax_query' => array(
+        array(
+            'taxonomy' => 'wpas-ad-zone',
+            'field'    => 'slug',
+            'terms'    => $atts['zone'],
+        )
+      ),
+      'orderby' => 'rand',
+      'posts_per_page' => 1
+    );
+
+    $ad_query = new WP_Query( $args );
+
+    ob_start();
+
+    echo '<pre>';
+    print_r( $ad_query );
+    echo '</pre>';
+
+    $output = ob_get_contents();
+    ob_end_clean();
 
     return $output;
   }
