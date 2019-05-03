@@ -1,25 +1,30 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class WPAdServer_Ad {
 	public static function register() {
-		register_post_type( 'wpas-ad', array(
-			'labels' => array(
-				'name'          => __('Ads'),
-				'singular_name' => __('Ad')
-			),
-			'menu_position'     => 20,
-			'show_ui'           => true,
-			'show_in_admin_bar' => true,
-			'taxonomies'        => array(
-				'wpas-ad-zone'
-			),
-			'supports' => array(
-				'custom-fields',
-				'thumbnail',
-				'title'
+		register_post_type(
+			'wpas-ad',
+			array(
+				'labels'            => array(
+					'name'          => __( 'Ads' ),
+					'singular_name' => __( 'Ad' ),
+				),
+				'menu_position'     => 20,
+				'show_ui'           => true,
+				'show_in_admin_bar' => true,
+				'taxonomies'        => array(
+					'wpas-ad-zone',
+				),
+				'supports'          => array(
+					'custom-fields',
+					'thumbnail',
+					'title',
+				),
 			)
-		) );
+		);
 	}
 
 	public static function render( $ad_post ) {
@@ -33,9 +38,12 @@ class WPAdServer_Ad {
 	}
 
 	public static function shortcode( $atts ) {
-		$atts = shortcode_atts( array(
-			'zone' => ''
-		), $atts );
+		$atts = shortcode_atts(
+			array(
+				'zone' => '',
+			),
+			$atts
+		);
 
 		if ( empty( $atts['zone'] ) ) {
 			return;
