@@ -1,0 +1,19 @@
+{
+	"name": "atl/wp-ad-server",
+	"description": "WP Plugin to serve our ads",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Jake Sutherland",
+			"email": "jake@wpdaytona.com"
+		},
+		{
+			"name": "Jeff \"Huey\" Huelsbeck",
+			"email": "huey@carpetelam.com"
+		}
+	],
+	"require": {
+		"wpscholar/phpcs-standards-wpscholar": "^1.0"
+	}
+}
