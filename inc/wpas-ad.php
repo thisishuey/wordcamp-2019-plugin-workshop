@@ -17,4 +17,20 @@ class WPAdServer_Ad {
      )
    );
   }
+
+  public static function shortcode( $atts ) {
+    $atts = shortcode_atts( array(
+      'zone' => ''
+    ), $atts );
+
+    if ( empty( $atts['zone'] ) ) {
+      return;
+    }
+
+    $output = '';
+
+    $output = '(Zone: ' . esc_html( $atts['zone'] ) . ')';
+
+    return $output;
+  }
 }

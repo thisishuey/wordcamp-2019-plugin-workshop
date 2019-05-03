@@ -14,3 +14,5 @@ require_once __DIR__ . '/inc/wpas-ad.php';
 require_once __DIR__ . '/inc/wpas-ad-zone.php';
 
 require_once __DIR__ . '/actions.php';
+
+add_shortcode( 'wpas-ad', array( 'WPAdServer_Ad', 'shortcode' ) );
