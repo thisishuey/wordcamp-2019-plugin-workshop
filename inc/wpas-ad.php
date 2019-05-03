@@ -8,10 +8,11 @@ class WPAdServer_Ad {
        "labels" => array(
          "name" => __("Ads"),
          "singular_name" => __("Ad")
-	   ),
-	   "show_ui" => true,
-       "show_in_admin_bar" => true,
+       ),
        "menu_position" => 20,
+       "show_ui" => true,
+       "show_in_admin_bar" => true,
+       "supports" => array("custom-fields", "thumbnail", "title"),
        "taxonomies" => array("wpas-ad-zone")
      )
    );
