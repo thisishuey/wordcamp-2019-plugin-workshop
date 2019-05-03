@@ -2,58 +2,64 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 class WPAdServer_Ad {
-  public static function wpas_create_post_type() {
-    register_post_type("wpas-ad",
-      array(
-       "labels" => array(
-         "name" => __("Ads"),
-         "singular_name" => __("Ad")
-       ),
-       "menu_position" => 20,
-       "show_ui" => true,
-       "show_in_admin_bar" => true,
-       "supports" => array("custom-fields", "thumbnail", "title"),
-       "taxonomies" => array("wpas-ad-zone")
-     )
-   );
-  }
+	public static function wpas_create_post_type() {
+		register_post_type( 'wpas-ad', array(
+			'labels' => array(
+				'name' => __('Ads'),
+				'singular_name' => __('Ad')
+			),
+			'menu_position' => 20,
+			'show_ui' => true,
+			'show_in_admin_bar' => true,
+			'supports' => array(
+				'custom-fields',
+				'thumbnail',
+				'title'
+			),
+			'taxonomies' => array(
+				'wpas-ad-zone'
+			)
+		) );
+	}
 
-  public static function shortcode( $atts ) {
-    $atts = shortcode_atts( array(
-      'zone' => ''
-    ), $atts );
+	public static function shortcode( $atts ) {
+		$atts = shortcode_atts( array(
+			'zone' => ''
+		), $atts );
 
-    if ( empty( $atts['zone'] ) ) {
-      return;
-    }
+		if ( empty( $atts['zone'] ) ) {
+			return;
+		}
 
-    $output = '';
+		$output = '';
 
-    $args = array(
-      'post_type' => 'wpas-ad',
-      'post_status' => 'publish',
-      'tax_query' => array(
-        array(
-            'taxonomy' => 'wpas-ad-zone',
-            'field'    => 'slug',
-            'terms'    => $atts['zone'],
-        )
-      ),
-      'orderby' => 'rand',
-      'posts_per_page' => 1
-    );
+		$args = array(
+			'post_type' => 'wpas-ad',
+			'post_status' => 'publish',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'wpas-ad-zone',
+					'field'    => 'slug',
+					'terms'    => $atts['zone'],
+				)
+			),
+			'orderby' => 'rand',
+			'posts_per_page' => 1
+		);
+		$ad_query = new WP_Query( $args );
 
-    $ad_query = new WP_Query( $args );
+		if ( $ad_query->post_count == 0 ) {
+			return;
+		}
 
-    ob_start();
+		$ad_post = $ad_query->posts[ 0 ];
 
-    echo '<pre>';
-    print_r( $ad_query );
-    echo '</pre>';
+		$ad_post_meta = get_post_meta( $ad_post->ID );
 
-    $output = ob_get_contents();
-    ob_end_clean();
+		$ad_image_url = wp_get_attachment_url( get_post_thumbnail_id( $ad_post->ID ), 'full' );
 
-    return $output;
-  }
+		$output = sprintf( '<a href="%s" target="_blank"><img src="%s"></a>', $ad_post_meta['URL'][0], $ad_image_url );
+
+		return $output;
+	}
 }

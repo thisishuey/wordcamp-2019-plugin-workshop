@@ -15,4 +15,6 @@ require_once __DIR__ . '/inc/wpas-ad-zone.php';
 
 require_once __DIR__ . '/actions.php';
 
-add_shortcode( 'wpas-ad', array( 'WPAdServer_Ad', 'shortcode' ) );
+add_theme_support( 'post-thumbnails' );
+
+add_shortcode( 'wpasad', array( 'WPAdServer_Ad', 'shortcode' ) );
